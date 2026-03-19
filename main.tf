@@ -43,6 +43,13 @@ resource "aws_internet_gateway" "igw" {
   }
 }
 
+resource "aws_eip" "natgw" {
+  vpc = true
+  tags = {
+    Name = "${var.envname}-natgw-eip"
+  }
+}
+
 #nat pubsubnet
 resource "aws_nat_gateway" "natgw" {
   allocation_id = aws_eip.natgw.id
