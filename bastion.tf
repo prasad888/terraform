@@ -1,14 +1,14 @@
 resource "aws_security_group" "bastion_sg" {
   name        = "bastion"
   description = "Allow ssh inbound traffic"
-  vpc_id = aws_vpc.terraform-vpc
+  vpc_id = aws_vpc.terraform-vpc.id  
 
   ingress {
     description      = "ssh from VPC"
     protocol  = "tcp"
     from_port = 22
     to_port   = 22
-    cidr_blocks = "0.0.0.0/0"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
